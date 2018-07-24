@@ -29,8 +29,6 @@ public class Bank {
 			System.out.println("Please Enter An All Number Password: ");
 			int password = in.nextInt();
 			
-			
-			System.out.println("");
 			System.out.println("<------------------------->");
 			System.out.println("You Currently Have Zero Accounts");
 			System.out.println("Would You Like To Open A New Account?");
