@@ -1,7 +1,12 @@
 package BankProject;
 import java.util.Scanner;
+import java.util.Random;
 public class Bank {
 
+	
+	
+	
+	
 	public Bank()
 	{
 		showHomeScreen();
@@ -19,51 +24,31 @@ public class Bank {
 		
 		Scanner in = new Scanner(System.in);
 		String choice = in.next();
+		//signing up 
 		
 		if(choice.equals("1"))
 		{
-			System.out.println("-------------------------");
-			System.out.println("Sign Up");
-			System.out.println("---->");
-			System.out.println("Please Choose A User Name: ");
-			String name = in.next();
-			System.out.println("------------------------->");
-			System.out.println("Please Enter A Password: ");
-			String password = in.next();
-			
-			System.out.println("<------------------------->");
-			System.out.println("Thank you for choosing Charles Schwabs");
-			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-			System.out.println("You Currently Have Zero Accounts");
-			System.out.println("Would You Like To Open A New Account?");
-			System.out.println(" ");
-			System.out.println("1. Yes I Would Like To Open A New Account");
-			System.out.println("Press any other key other than 1 to exit the program");
+			User newUser = new User();
 		}
-		
+		//exit if user dont want to open account 
 		else
 		{
 			System.out.println("Thank you for choosing Charles Schwab, have a great day");
 		}
 		
 		String userInput = in.next();
-		
+		//user want to open account, keep program running
+		//open either a saving or checking account for user 
 		if(userInput.equals("1"))
 		{
 			System.out.println("What Type Of Account Would You Like To Open?");
 			System.out.println("1.Checking");
 			System.out.println("2.Saving");
 		}
-		
+		//quits the program if user dont want to open either account 
 		else
 		{
 			System.out.println("Thank you for choosing Charles Schwab, have a great day");
-		}
-		
-		
+		}	
 	}
-	
-	
-	
-	
-}
+}	
