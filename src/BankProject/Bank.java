@@ -8,7 +8,8 @@ public class Bank {
 	//instance vairables
 //	private 
 	
-	private HashMap<User, ArrayList<Account>> user = new HashMap<>();
+	private HashMap<User, ArrayList<Account>> userbase = new HashMap<>();
+	private int yourID;
 	
 	Scanner in = new Scanner(System.in);
 	
@@ -109,6 +110,7 @@ public class Bank {
 		System.out.println("------------------------------->");
 		System.out.println("Please Enter A Password: ");
 		String password = in.next();
+		//creating a new user
 		User newUser = new User(name, password);
 		System.out.println("------------------------------->");
 		System.out.println("Thank you for joining joining Charles Schwab, press 1 to go back to home screen");
@@ -129,6 +131,45 @@ public class Bank {
 	
 	public void showCreateAccount()
 	{
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("Do you want to create a checking or saving account?");
+		System.out.println("1. checking");
+		System.out.println("2. saving");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		String typeOfAccount = in.next(); //takes in type of account 
+		System.out.println("How much money would you like to put into the account right now?");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		int amountToStartWith = in.nextInt();
+		
+		int accountCount = 1;
+		
+		if(accountCount <= 5)
+		{
+			try
+			{
+				if(typeOfAccount.equals("1"))
+				{
+					String checking = "Checking Account";
+					Account newAccount = new Account(amountToStartWith, checking);
+				}
+				else if (typeOfAccount.equals("2"))
+				{
+					String saving = "Saving Account";
+					Account newAccount = new Account(amountToStartWith, saving);
+				}
+				else
+				{
+					System.out.println("You did not enter a valid option");
+					showCreateAccount();
+				}
+				accountCount++;
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("Please enter a valid option");
+				showCreateAccount();
+			}
+		}
 		
 	}
 	

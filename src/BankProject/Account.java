@@ -19,7 +19,10 @@ public class Account {
 		System.out.println("Your account ID is " + accID);
 	}
 	
-	
+	public int getAccountID()
+	{
+		return accID;
+	}
 	
 	public int getBalance()
 	{
