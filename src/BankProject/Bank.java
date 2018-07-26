@@ -5,13 +5,15 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Bank {
 	
-	//instance vairables
+	//instance variables
 //	private 
 	
 	private HashMap<User, ArrayList<Account>> userbase = new HashMap<>();
 	private int yourID;
-	
+	private User newUser;
+	private ArrayList<Account> theAccounts;
 	Scanner in = new Scanner(System.in);
+	private String thePassword;
 	
 	
 	public Bank()
@@ -42,7 +44,7 @@ public class Bank {
 		{
 			showLoginScreen();
 		}
-		//exit if user dont want to open account 
+		//exit if user don't want to open account 
 		else
 		{
 			showQuitScreen();
@@ -98,7 +100,33 @@ public class Bank {
 	}
 	
 	public void showLoginScreen() {
-		System.out.println("Please Login");
+		System.out.println("Login Screen");
+		System.out.println("----------------------------------------->");
+		System.out.println("Please Enter your UserID");
+		int userInputID = in.nextInt();
+		System.out.println("Please enter your password");
+		String userInputPassword = in.next();
+//		System.out.println(yourID);
+//		System.out.println(thePassword);
+		try 
+		{
+			if(userInputID == yourID)
+			{
+				showHomepage();
+			}
+//			else
+//			{
+//				System.out.println("Your ID is invalid");
+//				showLoginScreen();
+//			}
+		}
+		catch(InputMismatchException e)
+		{
+			System.out.println("Your ID is invalid");
+			showLoginScreen();
+		}
+		
+		
 	}
 	
 	public void showSignUpScreen() {
@@ -111,7 +139,14 @@ public class Bank {
 		System.out.println("Please Enter A Password: ");
 		String password = in.next();
 		//creating a new user
-		User newUser = new User(name, password);
+		
+		thePassword = password; //instance
+		
+		newUser = new User(name, password);
+		
+		yourID = newUser.getUserID(); // yourID now holds the user's id 
+		yourID++;
+		
 		System.out.println("------------------------------->");
 		System.out.println("Thank you for joining joining Charles Schwab, press 1 to go back to home screen");
 		System.out.println("Press any other key to exit Charles Schwab");
@@ -151,17 +186,20 @@ public class Bank {
 				{
 					String checking = "Checking Account";
 					Account newAccount = new Account(amountToStartWith, checking);
+					theAccounts.add(newAccount);
 				}
 				else if (typeOfAccount.equals("2"))
 				{
 					String saving = "Saving Account";
 					Account newAccount = new Account(amountToStartWith, saving);
+					theAccounts.add(newAccount);
 				}
 				else
 				{
 					System.out.println("You did not enter a valid option");
 					showCreateAccount();
 				}
+				userbase.put(newUser, theAccounts);
 				accountCount++;
 			}
 			catch(InputMismatchException e)
