@@ -1,16 +1,26 @@
 package BankProject;
 
+import java.util.Scanner;
+import java.util.Random;
+
 public class Account {
 
 	private int accID;
 	private int balance;
-	private boolean accountType;
+	private String type;
+	private static int idCount = 1;
 	
 	
-	public Account()
+	public Account(int theBalance, String theAccountType)
 	{
+		accID = idCount;
+		balance = theBalance;
+		this.type = theAccountType;
+		idCount++;
 		
 	}
+	
+	
 	
 	public int getBalance()
 	{
