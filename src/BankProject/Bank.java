@@ -1,4 +1,6 @@
 package BankProject;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Bank {
@@ -6,42 +8,15 @@ public class Bank {
 	//instance vairables
 //	private 
 	
+	private HashMap<User, ArrayList<Account>> user = new HashMap<>();
+	
+	Scanner in = new Scanner(System.in);
+	
+	
 	public Bank()
 	{
 		//initialize the user list
 		showHomeScreen();
-	}
-	
-	public void showHomepage() {
-		
-		//finish this
-		System.out.println("1. Create Account");
-		System.out.println("2. Delete Account");
-		//...
-		try {
-			Scanner in = new Scanner(System.in);
-			int input = in.nextInt();
-			
-			switch(input) {
-			case 1:
-				showCreateAccount();
-			case 2: 
-				showDeleteAccount();
-			}
-			//...
-		}
-		catch(InputMismatchException e) {
-			showHomepage();
-		}
-		
-	}
-	
-	public void showLoginScreen() {
-		System.out.println("Please Login");
-	}
-	
-	public void showSignUpScreen() {
-		System.out.println("Please Sign up");
 	}
 	
 	//first thing users see
@@ -55,7 +30,6 @@ public class Bank {
 		System.out.println("Press any other key to exit Charles Schwab");
 		System.out.println("------------------------------------------");
 		
-		Scanner in = new Scanner(System.in);
 		String choice = in.next();
 		
 		//signing up 
@@ -70,9 +44,105 @@ public class Bank {
 		//exit if user dont want to open account 
 		else
 		{
-			System.out.println("Thank you for choosing Charles Schwab, have a great day");
+			showQuitScreen();
+		}
+	}
+	
+	
+	public void showHomepage() {
+		
+		//finish this
+		System.out.println("1. Create Account");
+		System.out.println("2. Delete Account");
+		//...
+		try {
+			int input = in.nextInt();
+			
+			switch(input) {
+			case 1:
+				showCreateAccount();
+			case 2: 
+				showDeleteAccount();
+			}
+			//...
+		}
+		catch(InputMismatchException e) {
+			showHomepage();
+		}
+	}
+	
+	public void showLoginScreen() {
+		System.out.println("Please Login");
+	}
+	
+	public void showSignUpScreen() {
+///*//		System.out.println("-------------------------");
+//////		System.out.println("Siging up as a new user");
+//////		System.out.println("---->");
+//////		System.out.println("Please Choose A User Name: ");
+//////		String name = in.next();
+//////		System.out.println("------------------------->");
+		System.out.println("Please Enter A Password: ");
+	}
+	
+	public void showCreateAccount()
+	{
+		
+	}
+	
+	public void showDeleteAccount()
+	{
+		
+	}
+	
+	public void showTransferToAnotherAcc()
+	{
+		
+	}
+	
+	public void showDeposit()
+	{
+		
+	}
+
+	public void showWithDraw()
+	{
+		
+	}
+	
+	public void showAccount()
+	{
+		
+	}
+	
+	public void showAllAccounts()
+	{
+		
+	}
+	
+	public void showLogOut()
+	{
+		showHomeScreen();
+	}
+	
+	public void showQuitScreen()
+	{
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("Are you sure you want to exit Charles Schwab?");
+		System.out.println("1. yes I'm sure");
+		System.out.println("Press anything else to go back to home screen");
+		String quitChoice = in.next();
+		
+		if(quitChoice.equals("1"))
+		{
+			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			System.out.println("Thank you for choosing Charles Schwab, have a nice day.");
 			System.exit(0);
 		}
 		
+		else
+		{
+			showHomeScreen();
+		}
 	}
 }	
