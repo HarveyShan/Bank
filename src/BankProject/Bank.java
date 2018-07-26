@@ -54,6 +54,14 @@ public class Bank {
 		//finish this
 		System.out.println("1. Create Account");
 		System.out.println("2. Delete Account");
+		System.out.println("3. Transfer to another account");
+		System.out.println("4. Deposit");
+		System.out.println("5. Withdraw");
+		System.out.println("6. Show account details");
+		System.out.println("7. Delete User");
+		System.out.println("8. Log out ");
+		System.out.println("9. Exit Charles Schwab");
+		
 		//...
 		try {
 			int input = in.nextInt();
@@ -61,12 +69,29 @@ public class Bank {
 			switch(input) {
 			case 1:
 				showCreateAccount();
-			case 2: 
+			case 3: 
 				showDeleteAccount();
+			case 4: 
+				showDeposit();
+			case 5: 
+				showWithdraw();
+			case 6: 
+				showAccount();
+			case 7: 
+				showDeleteUser();
+			case 8: 
+				showLogOut();
+			case 9: 
+				showQuitScreen();
+				
+			default:
+				System.out.println("Please choose a valid entry");
+				showHomepage();
 			}
 			//...
 		}
 		catch(InputMismatchException e) {
+			System.out.println("Please choose a valid entry");
 			showHomepage();
 		}
 	}
@@ -76,13 +101,30 @@ public class Bank {
 	}
 	
 	public void showSignUpScreen() {
-///*//		System.out.println("-------------------------");
-//////		System.out.println("Siging up as a new user");
-//////		System.out.println("---->");
-//////		System.out.println("Please Choose A User Name: ");
-//////		String name = in.next();
-//////		System.out.println("------------------------->");
+		System.out.println("------------------------------->");
+		System.out.println("Siging up as a new user");
+		System.out.println("------------------------------->");
+		System.out.println("Please Choose A User Name: ");
+		String name = in.next();
+		System.out.println("------------------------------->");
 		System.out.println("Please Enter A Password: ");
+		String password = in.next();
+		User newUser = new User(name, password);
+		System.out.println("------------------------------->");
+		System.out.println("Thank you for joining joining Charles Schwab, press 1 to go back to home screen");
+		System.out.println("Press any other key to exit Charles Schwab");
+		String userChoice = in.next();
+		
+		if(userChoice.equals("1"))
+		{
+			showHomeScreen();
+		}
+		
+		else
+		{
+			showQuitScreen();
+		}
+		
 	}
 	
 	public void showCreateAccount()
@@ -105,7 +147,7 @@ public class Bank {
 		
 	}
 
-	public void showWithDraw()
+	public void showWithdraw()
 	{
 		
 	}
@@ -116,6 +158,11 @@ public class Bank {
 	}
 	
 	public void showAllAccounts()
+	{
+		
+	}
+	
+	public void showDeleteUser()
 	{
 		
 	}

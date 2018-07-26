@@ -9,11 +9,9 @@ public class User {
 	private String password;
 	private int userID;
 	private int balance;
+	private static int userIdCount = 68249;
+	
 	Scanner in = new Scanner(System.in);
-	
-	
-	Random UserID = new Random();
-	int newUserID = UserID.nextInt(100000);
 	
 //	public User()
 //	{
@@ -38,12 +36,14 @@ public class User {
 //		System.out.println("Press any other key other than 1 to exit the program");
 //	}
 	
-	public User(String theName, String thePassword, int theUserID)
+	public User(String theName, String thePassword)
 	{
-		//these are backwards
-		theName = name;
-		thePassword = password;
-		theUserID = userID;
+		name = theName;
+		password = thePassword;
+		userID = userIdCount;
+		userID++;
+		System.out.println("Your UserID is " + userID);
+
 	}
 
 	public void setPassword()
