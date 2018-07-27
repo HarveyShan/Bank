@@ -8,16 +8,18 @@ public class Bank {
 	//instance variables
 //	private 
 	
-	private HashMap<User, ArrayList<Account>> userbase = new HashMap<>();
-	private int yourID;
-	private User newUser;
-	private ArrayList<Account> theAccounts;
-	Scanner in = new Scanner(System.in);
-	private String thePassword;
+	private HashMap<User, ArrayList<Account>> userbase;
+//	private int yourID;
+	private User loggedInUser;
+//	private ArrayList<Account> theAccounts;
+	private Scanner in;
+//	private String thePassword;
 	
 	
 	public Bank()
 	{
+		userbase = new HashMap<>();
+		in = new Scanner(System.in);
 		//initialize the user list
 		showHomeScreen();
 	}
@@ -64,6 +66,7 @@ public class Bank {
 		System.out.println("7. Delete User");
 		System.out.println("8. Log out ");
 		System.out.println("9. Exit Charles Schwab");
+		System.out.println("10. Spend");
 		
 		//...
 		try {
@@ -79,6 +82,7 @@ public class Bank {
 			case 5: 
 				showWithdraw();
 			case 6: 
+				
 				showAccount();
 			case 7: 
 				showDeleteUser();
@@ -86,7 +90,10 @@ public class Bank {
 				showLogOut();
 			case 9: 
 				showQuitScreen();
-				
+			case 10:
+				int inputAccID = in.nextInt();
+				int inputAmount = in.nextInt();
+				String inputType = in.next();
 			default:
 				System.out.println("Please choose a valid entry");
 				showHomepage();
@@ -106,27 +113,21 @@ public class Bank {
 		int userInputID = in.nextInt();
 		System.out.println("Please enter your password");
 		String userInputPassword = in.next();
-//		System.out.println(yourID);
-//		System.out.println(thePassword);
-		try 
-		{
-			if(userInputID == yourID)
-			{
-				showHomepage();
+		
+		
+		for(User user : userbase.keySet()) {
+			if(user.getUserID() == userInputID && user.getPassword().equals(userInputPassword)) {
+				loggedInUser = user;
+				break;
 			}
-//			else
-//			{
-//				System.out.println("Your ID is invalid");
-//				showLoginScreen();
-//			}
 		}
-		catch(InputMismatchException e)
-		{
-			System.out.println("Your ID is invalid");
-			showLoginScreen();
+		
+		if(loggedInUser == null) {
+			System.out.println("The user does not exist");
 		}
 		
 		
+		showHomepage();
 	}
 	
 	public void showSignUpScreen() {
@@ -140,12 +141,10 @@ public class Bank {
 		String password = in.next();
 		//creating a new user
 		
-		thePassword = password; //instance
 		
-		newUser = new User(name, password);
+		User newUser = new User(name, password);
 		
-		yourID = newUser.getUserID(); // yourID now holds the user's id 
-		yourID++;
+		userbase.put(newUser, new ArrayList<Account>());
 		
 		System.out.println("------------------------------->");
 		System.out.println("Thank you for joining joining Charles Schwab, press 1 to go back to home screen");
@@ -186,20 +185,19 @@ public class Bank {
 				{
 					String checking = "Checking Account";
 					Account newAccount = new Account(amountToStartWith, checking);
-					theAccounts.add(newAccount);
+					userbase.get(loggedInUser).add(newAccount);
 				}
 				else if (typeOfAccount.equals("2"))
 				{
 					String saving = "Saving Account";
 					Account newAccount = new Account(amountToStartWith, saving);
-					theAccounts.add(newAccount);
+					userbase.get(loggedInUser).add(newAccount);
 				}
 				else
 				{
 					System.out.println("You did not enter a valid option");
 					showCreateAccount();
 				}
-				userbase.put(newUser, theAccounts);
 				accountCount++;
 			}
 			catch(InputMismatchException e)
@@ -207,6 +205,11 @@ public class Bank {
 				System.out.println("Please enter a valid option");
 				showCreateAccount();
 			}
+		}
+		else
+		{
+			System.out.println("you have exceeded the maximum amount of account");
+			showCreateAccount();
 		}
 		
 	}

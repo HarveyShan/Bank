@@ -1,6 +1,6 @@
 package BankProject;
 
-import java.util.Random;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class User {
@@ -9,10 +9,9 @@ public class User {
 	private String password;
 	private int userID;
 	private int balance;
-	private static int userIdCount = 68249;
 	
-	Scanner in = new Scanner(System.in);
 	
+	int userIdCount = 68249;
 	
 	public User(String theName, String thePassword)
 	{
@@ -41,7 +40,7 @@ public class User {
 	
 	public void setList()
 	{
-
+		
 	}
 	
 	public String getUserName()
@@ -49,10 +48,10 @@ public class User {
 		return name;
 	}
 	
-	public int spend()
-	{
-		
-		return balance;
-	}
+//	public void spend(int accountID, int amount, String type)
+//	{
+//		Transaction newTransaction = new Transaction(accountID, amount, type);
+//		transactions.add(newTransaction);
+//	}
 	
 }

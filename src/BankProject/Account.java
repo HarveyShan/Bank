@@ -1,5 +1,6 @@
 package BankProject;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Account {
@@ -7,8 +8,9 @@ public class Account {
 	private int accID;
 	private int balance;
 	private String type;
-	private static int idCount = 1000;
+	private ArrayList<Transaction> transactions;
 	
+	int idCount = 1000;
 	
 	public Account(int theBalance, String theAccountType)
 	{
@@ -25,7 +27,8 @@ public class Account {
 		return balance;
 	}
 	
-	public void printTransactionLog()
+	//shouldn't be in User class 
+	public void printTransactionLog(int userInputAccountID)
 	{
 		
 	}
